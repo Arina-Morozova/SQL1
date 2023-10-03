@@ -12,11 +12,6 @@ public class BankLoginTest {
 
     LoginPage loginPage;
 
-    @AfterEach
-    void tearDown() {
-        cleanDatabase();
-    }
-
     @AfterAll
     static void tearDownAll() {
         cleanDatabase();
@@ -29,7 +24,7 @@ public class BankLoginTest {
 
     @Test
     @DisplayName("Should success login to dashboard with exist login and password from sut test data")
-    void ShouldSuccessLogin() {
+    void shouldSuccessLogin() {
         var authInfo = DataHelper.getAuthInfoWithTestData();
         var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyVerificationPageVisibility();
@@ -39,7 +34,7 @@ public class BankLoginTest {
 
     @Test
     @DisplayName("Should get error notification if user is not exist in base")
-    void ShouldGetErrorNotificationIfUserIsNotExistInBase() {
+    void shouldGetErrorNotificationIfUserIsNotExistInBase() {
         var authInfo = DataHelper.generateRandomUser();
         loginPage.validLogin(authInfo);
         loginPage.verifyErrorNotification("Ошибка! \nНеверно указан логин или пароль");
@@ -47,7 +42,7 @@ public class BankLoginTest {
 
     @Test
     @DisplayName("Should get error notification if user exist in base and random verification code")
-    void ShouldGetErrorNotificationIfUserExistInBaseAndRandomVerificationCode() {
+    void shouldGetErrorNotificationIfUserExistInBaseAndRandomVerificationCode() {
         var authInfo = DataHelper.getAuthInfoWithTestData();
         var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verifyVerificationPageVisibility();
